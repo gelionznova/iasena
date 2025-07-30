@@ -20,7 +20,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "drf_yasg",
     "corsheaders",
-    "django_filters",       
+    "django_filters",        
     "users",
     "meetings",
 ]
@@ -61,7 +61,6 @@ DATABASES = {
     'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
 }
 
-
 # BASE DE DATO SQLITE
 # DATABASES = {
 #     'default': {
@@ -70,8 +69,32 @@ DATABASES = {
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'mssql',
+#         'NAME': 'meeting',
+#         'USER': '',
+#         'PASSWORD': '',
+#         'HOST': 'CODE',  # O la dirección IP del servidor SQL
+#         'PORT': '',       # Puerto por defecto para SQL Server
+#         'OPTIONS': {
+#             'driver': 'ODBC Driver 17 for SQL Server',  
+#             'extra_params': 'TrustServerCertificate=yes;',
+#         },
+#     }
+# }
 
-
+# BASE DE DATO post
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'd77jgm2p889ebd',
+#         'USER': 'u3ahi7l4u99p88',
+#         'PASSWORD': 'p13bf6b6fb8b87cafaf21270ed7d3402641d560e923eafee69089743ef5d757d3',
+#         'HOST': 'cbec45869p4jbu.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com',
+#         'PORT': '5432',
+#     }
+# }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
