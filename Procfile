@@ -1,1 +1,1 @@
-web: gunicorn gps.wsgi --log-file -
+web: gunicorn gps.wsgi:application --log-file -
