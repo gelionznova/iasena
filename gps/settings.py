@@ -1,14 +1,18 @@
 import os
 import datetime
-import dj_database_url
 from pathlib import Path
 from datetime import timedelta
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'tu_valor_predeterminado')
-DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'True'
-ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
+DEBUG = True
+
+# deploy
+# DEBUG = False
+
+ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+# ALLOWED_HOSTS = ["gpsdjango-61ff97537fca.herokuapp.com"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -20,7 +24,8 @@ INSTALLED_APPS = [
     "rest_framework",
     "drf_yasg",
     "corsheaders",
-    "django_filters",        
+    "django_filters",
+    "psycopg2",    
     "users",
     "meetings",
 ]
@@ -57,10 +62,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'gps.wsgi.application'
 
-DATABASES = {
-    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
-}
-
 # BASE DE DATO SQLITE
 # DATABASES = {
 #     'default': {
@@ -69,20 +70,20 @@ DATABASES = {
 #     }
 # }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'mssql',
-#         'NAME': 'meeting',
-#         'USER': '',
-#         'PASSWORD': '',
-#         'HOST': 'CODE',  # O la dirección IP del servidor SQL
-#         'PORT': '',       # Puerto por defecto para SQL Server
-#         'OPTIONS': {
-#             'driver': 'ODBC Driver 17 for SQL Server',  
-#             'extra_params': 'TrustServerCertificate=yes;',
-#         },
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'mssql',
+        'NAME': 'meeting',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': 'CODE',  # O la dirección IP del servidor SQL
+        'PORT': '',       # Puerto por defecto para SQL Server
+        'OPTIONS': {
+            'driver': 'ODBC Driver 17 for SQL Server',  
+            'extra_params': 'TrustServerCertificate=yes;',
+        },
+    }
+}
 
 # BASE DE DATO post
 # DATABASES = {
@@ -136,6 +137,12 @@ AUTH_USER_MODEL = "users.User"
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True  
 
+# CORS_ORIGIN_ALLOW_ALL = False
+# CORS_ALLOWED_ORIGINS = [
+#     "https://74c8vq4h-3000.use.devtunnels.ms",
+# ]
+# CORS_ALLOW_CREDENTIALS = True
+
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # O utiliza otro backend según necesites
@@ -166,4 +173,3 @@ LOGGING = {
         "level": "INFO",
     },
 }
-
